@@ -3,6 +3,61 @@
 [Passport](https://github.com/jaredhanson/passport) strategy for authenticating
 with [Foursquare](https://foursquare.com/) using the OAuth 2.0 API.
 
+## Installation
+
+    $ npm install passport-foursquare
+
+## Usage
+
+#### Configure Strategy
+
+The Foursquare authentication strategy authenticates users using a Foursquare
+account and OAuth 2.0 tokens.  The strategy requires a `verify` callback, which
+accepts these credentials and calls `done` providing a user, as well as
+`options` specifying a client ID, client secret, and callback URL.
+
+    passport.use(new FoursquareStrategy({
+        clientID: FOURSQUARE_CLIENT_ID,
+        clientSecret: FOURSQUARE_CLIENT_SECRET,
+        callbackURL: "http://127.0.0.1:3000/auth/foursquare/callback"
+      },
+      function(accessToken, refreshToken, profile, done) {
+        User.findOrCreate({ foursquareId: profile.id }, function (err, user) {
+          return done(err, user);
+        });
+      }
+    ));
+
+#### Authenticate Requests
+
+Use `passport.authenticate()`, specifying the `'foursquare'` strategy, to
+authenticate requests.
+
+For example, as route middleware in an [Express](http://expressjs.com/)
+application:
+
+    app.get('/auth/foursquare',
+      passport.authenticate('foursquare'),
+      function(req, res){
+        // The request will be redirected to Foursquare for authentication, so
+        // this function will not be called.
+      });
+
+    app.get('/auth/foursquare/callback', 
+      passport.authenticate('foursquare', { failureRedirect: '/login' }),
+      function(req, res) {
+        // Successful authentication, redirect home.
+        res.redirect('/');
+      });
+
+#### Examples
+
+For a complete, working example, refer to the [login example](https://github.com/jaredhanson/passport-foursquare/tree/master/examples/login).
+
+## Credits
+
+  - [Jared Hanson](http://github.com/jaredhanson)
+
 ## License
 
 (The MIT License)
