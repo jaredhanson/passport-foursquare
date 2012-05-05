@@ -1,7 +1,13 @@
 # Passport-Foursquare
 
-[Passport](https://github.com/jaredhanson/passport) strategy for authenticating
-with [Foursquare](https://foursquare.com/) using the OAuth 2.0 API.
+[Passport](http://passportjs.org/) strategy for authenticating with [Foursquare](https://foursquare.com/)
+using the OAuth 2.0 API.
+
+This module lets you authenticate using Foursquare in your Node.js applications.
+By plugging into Passport, Foursquare authentication can be easily and
+unobtrusively integrated into any application or framework that supports
+[Connect](http://www.senchalabs.org/connect/)-style middleware, including
+[Express](http://expressjs.com/).
 
 ## Installation
 
