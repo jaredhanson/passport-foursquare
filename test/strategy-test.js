@@ -30,9 +30,12 @@ vows.describe('FoursquareStrategy').addBatch({
       
       // mock
       strategy._oauth2.get = function(url, accessToken, callback) {
-        var body = '{"meta":{"code":200},"notifications":[{"type":"notificationTray","item":{"unreadCount":0}}],"response":{"user":{"id":"1419","firstName":"Jared","lastName":"Hanson","photo":"https://playfoursquare.s3.amazonaws.com/userpix_thumbs/1419_1238423817.jpg","gender":"male","homeCity":"Oakland, CA","relationship":"self","type":"user","pings":false,"contact":{"phone":"5105551234","email":"jaredhanson@example.com","twitter":"jaredhanson","facebook":"500308595"}}}}';
-        
-        callback(null, body, undefined);
+        if (url === 'https://api.foursquare.com/v2/users/self?v=20120504') {
+          var body = '{"meta":{"code":200},"notifications":[{"type":"notificationTray","item":{"unreadCount":0}}],"response":{"user":{"id":"1419","firstName":"Jared","lastName":"Hanson","photo":"https://playfoursquare.s3.amazonaws.com/userpix_thumbs/1419_1238423817.jpg","gender":"male","homeCity":"Oakland, CA","relationship":"self","type":"user","pings":false,"contact":{"phone":"5105551234","email":"jaredhanson@example.com","twitter":"jaredhanson","facebook":"500308595"}}}}';
+          callback(null, body, undefined);
+        } else {
+          callback(new Error('invalid user profile URL'));
+        }
       }
       
       return strategy;
