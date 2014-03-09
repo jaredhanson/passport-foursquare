@@ -14,7 +14,7 @@ describe('Strategy#userProfile', function() {
   
   // mock
   strategy._oauth2.get = function(url, accessToken, callback) {
-    if (url != 'https://api.foursquare.com/v2/users/self?v=20120504') { return callback(new Error('wrong url argument')); }
+    if (url != 'https://api.foursquare.com/v2/users/self?v=20140308') { return callback(new Error('wrong url argument')); }
     if (accessToken != 'token') { return callback(new Error('wrong token argument')); }
     
     var body = '{"meta":{"code":200},"notifications":[{"type":"notificationTray","item":{"unreadCount":0}}],"response":{"user":{"id":"1419","firstName":"Jared","lastName":"Hanson","photo":"https://playfoursquare.s3.amazonaws.com/userpix_thumbs/1419_1238423817.jpg","gender":"male","homeCity":"Oakland, CA","relationship":"self","type":"user","pings":false,"contact":{"phone":"5105551234","email":"jaredhanson@example.com","twitter":"jaredhanson","facebook":"500308595"}}}}';

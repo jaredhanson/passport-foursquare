@@ -15,7 +15,7 @@ describe('Strategy#userProfile', function() {
   
     // mock
     strategy._oauth2.get = function(url, accessToken, callback) {
-      if (url != 'https://api.foursquare.com/v2/users/self?v=20120504') { return callback(new Error('wrong url argument')); }
+      if (url != 'https://api.foursquare.com/v2/users/self?v=20140308') { return callback(new Error('wrong url argument')); }
       if (accessToken != 'token') { return callback(new Error('wrong token argument')); }
     
       var body = '{"meta":{"code":401,"errorType":"invalid_auth","errorDetail":"OAuth token invalid or revoked."},"response":{}}';
@@ -50,7 +50,7 @@ describe('Strategy#userProfile', function() {
   
     // mock
     strategy._oauth2.get = function(url, accessToken, callback) {
-      if (url != 'https://api.foursquare.com/v2/users/self?v=20120504') { return callback(new Error('wrong url argument')); }
+      if (url != 'https://api.foursquare.com/v2/users/self?v=20140308') { return callback(new Error('wrong url argument')); }
       if (accessToken != 'token') { return callback(new Error('wrong token argument')); }
     
       var body = 'Hello, world.';
