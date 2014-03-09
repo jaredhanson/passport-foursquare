@@ -1,4 +1,10 @@
-# Passport-Foursquare
+# passport-foursquare
+
+[![Build](https://travis-ci.org/jaredhanson/passport-foursquare.png)](https://travis-ci.org/jaredhanson/passport-foursquare)
+[![Coverage](https://coveralls.io/repos/jaredhanson/passport-foursquare/badge.png)](https://coveralls.io/r/jaredhanson/passport-foursquare)
+[![Quality](https://codeclimate.com/github/jaredhanson/passport-foursquare.png)](https://codeclimate.com/github/jaredhanson/passport-foursquare)
+[![Dependencies](https://david-dm.org/jaredhanson/passport-foursquare.png)](https://david-dm.org/jaredhanson/passport-foursquare)
+[![Tips](http://img.shields.io/gittip/jaredhanson.png)](https://www.gittip.com/jaredhanson/)
 
 [Passport](http://passportjs.org/) strategy for authenticating with [Foursquare](https://foursquare.com/)
 using the OAuth 2.0 API.
@@ -58,10 +64,8 @@ For a complete, working example, refer to the [login example](https://github.com
 
 ## Tests
 
-    $ npm install --dev
-    $ make test
-
-[![Build Status](https://secure.travis-ci.org/jaredhanson/passport-foursquare.png)](http://travis-ci.org/jaredhanson/passport-foursquare)
+    $ npm install
+    $ npm test
 
 ## Credits
 
@@ -71,5 +75,5 @@ For a complete, working example, refer to the [login example](https://github.com
 
 [The MIT License](http://opensource.org/licenses/MIT)
 
-Copyright (c) 2011-2013 Jared Hanson <[http://jaredhanson.net/](http://jaredhanson.net/)>
+Copyright (c) 2011-2014 Jared Hanson <[http://jaredhanson.net/](http://jaredhanson.net/)>
 
