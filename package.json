@@ -30,11 +30,12 @@
   ],
   "main": "./lib",
   "dependencies": {
-    "pkginfo": "0.2.x",
-    "passport-oauth": "0.1.x"
+    "passport-oauth2": "1.x.x"
   },
   "devDependencies": {
-    "vows": "0.6.x"
+    "vows": "0.6.x",
+    "mocha": "1.x.x",
+    "chai": "1.x.x"
   },
   "engines": {
     "node": ">= 0.4.0"
