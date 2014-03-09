@@ -1,7 +1,7 @@
 var vows = require('vows');
 var assert = require('assert');
 var util = require('util');
-var foursquare = require('passport-foursquare');
+var foursquare = require('..');
 
 
 vows.describe('passport-foursquare').addBatch({

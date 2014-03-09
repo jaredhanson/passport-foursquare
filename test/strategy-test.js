@@ -1,7 +1,7 @@
 var vows = require('vows');
 var assert = require('assert');
 var util = require('util');
-var FoursquareStrategy = require('passport-foursquare/strategy');
+var FoursquareStrategy = require('../lib/strategy');
 
 
 vows.describe('FoursquareStrategy').addBatch({
