@@ -2,8 +2,13 @@
   "name": "passport-foursquare-examples-login",
   "version": "0.0.0",
   "dependencies": {
-    "express": ">= 0.0.0",
+    "body-parser": "^1.16.0",
+    "cookie-parser": "^1.4.3",
     "ejs": ">= 0.0.0",
+    "express": ">= 0.0.0",
+    "express-session": "^1.15.0",
+    "method-override": "^2.3.7",
+    "morgan": "^1.8.0",
     "passport": ">= 0.0.0",
     "passport-foursquare": ">= 0.0.0"
   }

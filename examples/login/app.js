@@ -1,4 +1,10 @@
 var express = require('express')
+  , cookieParser = require('cookie-parser')
+  , bodyParser = require('body-parser')
+  , methodOverride = require('method-override')
+  , logger = require('morgan')
+  , session = require('express-session')
+  , partials = require('express-partials')
   , passport = require('passport')
   , util = require('util')
   , FoursquareStrategy = require('passport-foursquare').Strategy;
@@ -30,12 +36,12 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new FoursquareStrategy({
     clientID: FOURSQUARE_CLIENT_ID,
     clientSecret: FOURSQUARE_CLIENT_SECRET,
-    callbackURL: "http://127.0.0.1:3000/auth/foursquare/callback"
+    callbackURL: "http://127.0.0.1:8000/auth/foursquare/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     // asynchronous verification, for effect...
     process.nextTick(function () {
-      
+
       // To keep the example simple, the user's Foursquare profile is returned
       // to represent the logged-in user.  In a typical application, you would
       // want to associate the Foursquare account with a user record in your
@@ -51,21 +57,20 @@ passport.use(new FoursquareStrategy({
 var app = express();
 
 // configure Express
-app.configure(function() {
-  app.set('views', __dirname + '/views');
-  app.set('view engine', 'ejs');
-  app.use(express.logger());
-  app.use(express.cookieParser());
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(express.session({ secret: 'keyboard cat' }));
-  // Initialize Passport!  Also use passport.session() middleware, to support
-  // persistent login sessions (recommended).
-  app.use(passport.initialize());
-  app.use(passport.session());
-  app.use(app.router);
-  app.use(express.static(__dirname + '/public'));
-});
+
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+app.use(logger('tiny'));
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(methodOverride());
+app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: true }));
+app.use(partials());
+// Initialize Passport!  Also use passport.session() middleware, to support
+// persistent login sessions (recommended).
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.static(__dirname + '/public'));
 
 
 app.get('/', function(req, res){
@@ -97,7 +102,7 @@ app.get('/auth/foursquare',
 //   request.  If authentication fails, the user will be redirected back to the
 //   login page.  Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
-app.get('/auth/foursquare/callback', 
+app.get('/auth/foursquare/callback',
   passport.authenticate('foursquare', { failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');
@@ -108,7 +113,7 @@ app.get('/logout', function(req, res){
   res.redirect('/');
 });
 
-app.listen(3000);
+app.listen(8000);
 
 
 // Simple route middleware to ensure user is authenticated.
