@@ -4,6 +4,7 @@ var express = require('express')
   , methodOverride = require('method-override')
   , logger = require('morgan')
   , session = require('express-session')
+  , partials = require('express-partials')
   , passport = require('passport')
   , util = require('util')
   , FoursquareStrategy = require('passport-foursquare').Strategy;
@@ -56,6 +57,7 @@ passport.use(new FoursquareStrategy({
 var app = express();
 
 // configure Express
+
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 app.use(logger('tiny'));
@@ -63,6 +65,7 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(methodOverride());
 app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: true }));
+app.use(partials());
 // Initialize Passport!  Also use passport.session() middleware, to support
 // persistent login sessions (recommended).
 app.use(passport.initialize());
